@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CLEOBELLA DESING — Fashion by CLEOBELLA</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="logo-section">
+        <svg class="logo-icon" viewBox="0 0 50 50" width="40" height="40">
+          <circle cx="25" cy="25" r="23" fill="none" stroke="url(#logoGradient)" stroke-width="2"/>
+          <path d="M25 10 L35 30 L15 30 Z" fill="url(#logoGradient)"/>
+          <defs>
+            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#d4456e;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#f4a460;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <h1 class="brand">CLEOBELLA DESING</h1>
+      </div>
+      <nav class="top-nav">
+        <a href="#products">Shop</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <button id="cart-toggle" aria-label="Open cart">
+          <span class="cart-icon">🛍️</span>
+          Cart (<span id="cart-count">0</span>)
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <h2>Handcrafted fashion, made to order</h2>
+          <p>Elegant pieces from CLEOBELLA DESING. Choose, order and we'll craft it for you.</p>
+          <a class="btn" href="#products">Start Shopping</a>
+        </div>
+        <div class="contact-card">
+          <p><strong>Email</strong><br /><a href="mailto:ijerheanthonia@gmail.com">ijerheanthonia@gmail.com</a></p>
+          <p><strong>Phone / WhatsApp</strong><br />+243 8165712215 (08165712215)</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="featured" class="container featured">
+      <h3>✨ Featured Collection</h3>
+      <div class="featured-content">
+        <div class="featured-text">
+          <p>Discover our exclusive handcrafted collection, designed for the modern African woman who celebrates her heritage with style and elegance.</p>
+          <ul class="features-list">
+            <li>✓ Custom-made to your measurements</li>
+            <li>✓ Premium fabrics & materials</li>
+            <li>✓ Expert craftsmanship</li>
+            <li>✓ Fast turnaround (2-3 weeks)</li>
+          </ul>
+          <a href="#products" class="btn primary">Shop Now</a>
+        </div>
+        <div class="featured-image">
+          <div class="featured-placeholder">🎨 Your Featured Piece</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sizing" class="container sizing">
+      <h3>📏 Sizing Guide</h3>
+      <div class="sizing-grid">
+        <div class="sizing-card">
+          <h4>Measurements Needed</h4>
+          <ul>
+            <li>Bust: Full around chest</li>
+            <li>Waist: Natural waist</li>
+            <li>Hips: Fullest part</li>
+            <li>Length: Shoulder to hem</li>
+            <li>Sleeve: Shoulder to wrist</li>
+          </ul>
+        </div>
+        <div class="sizing-card">
+          <h4>How to Measure</h4>
+          <ul>
+            <li>Use a soft measuring tape</li>
+            <li>Wear your normal undergarments</li>
+            <li>Stand straight & relaxed</li>
+            <li>Don't pull the tape too tight</li>
+            <li>Measure in inches or centimeters</li>
+          </ul>
+        </div>
+        <div class="sizing-card">
+          <h4>Tips for Perfect Fit</h4>
+          <ul>
+            <li>Share your preferred fit (loose/fitted)</li>
+            <li>Mention any specific style preferences</li>
+            <li>Ask about fabric recommendations</li>
+            <li>We'll follow up to confirm details</li>
+            <li>Adjustments available if needed</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="newsletter" class="container newsletter">
+      <h3>📧 Subscribe to Our Newsletter</h3>
+      <p>Get updates on new designs, promotions, and exclusive offers!</p>
+      <form id="newsletter-form" class="newsletter-form">
+        <input type="email" name="email" placeholder="Enter your email" required />
+        <button type="submit" class="btn primary">Subscribe</button>
+      </form>
+      <div id="newsletter-message" class="newsletter-message"></div>
+    </section>
+
+    <section id="faq" class="container faq">
+      <h3>❓ Frequently Asked Questions</h3>
+      <div class="faq-list">
+        <div class="faq-item">
+          <h4>How long does an order take?</h4>
+          <p>Custom orders typically take 2-3 weeks from confirmation. Rush orders available upon request.</p>
+        </div>
+        <div class="faq-item">
+          <h4>What payment methods do you accept?</h4>
+          <p>We accept bank transfers, mobile money, and can arrange payment plans. Contact us for details.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Can I make changes to my order?</h4>
+          <p>Yes! Changes can be made within 48 hours of placing your order. Contact us immediately.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Do you offer returns or refunds?</h4>
+          <p>Since items are custom-made, returns aren't available. However, we ensure satisfaction before delivery.</p>
+        </div>
+        <div class="faq-item">
+          <h4>How should I care for my CLEOBELLA piece?</h4>
+          <p>We provide care instructions with every order. Generally, hand wash with mild detergent and air dry.</p>
+        </div>
+        <div class="faq-item">
+          <h4>Do you ship internationally?</h4>
+          <p>Yes! We ship to most countries. Shipping costs calculated based on weight and destination.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="social" class="container social">
+      <h3>🌐 Follow Us</h3>
+      <div class="social-links">
+        <a href="#" class="social-btn" title="Instagram">📸 Instagram</a>
+        <a href="#" class="social-btn" title="Facebook">👍 Facebook</a>
+        <a href="#" class="social-btn" title="TikTok">🎬 TikTok</a>
+        <a href="#" class="social-btn" title="Twitter">𝕏 Twitter</a>
+      </div>
+      <p>Share your CLEOBELLA moments with #CleobellaDessing</p>
+    </section>
+
+    <section id="products" class="container products">
+      <h3>Popular pieces</h3>
+      <div id="products-grid" class="grid"></div>
+    </section>
+
+    <section id="about" class="container about">
+      <h3>About CLEOBELLA DESING</h3>
+      <p>We design couture and ready-to-wear garments. Orders are custom-made — select a product, add details at checkout, and we'll confirm before production.</p>
+    </section>
+
+    <section id="reviews" class="container reviews">
+      <h3>⭐ Customer Reviews</h3>
+      <div id="reviews-grid" class="reviews-grid"></div>
+      
+      <form id="review-form" class="review-form" style="margin-top: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; padding: 2rem; background: var(--card-bg); border-radius: 8px;">
+        <h4 style="margin-bottom: 1.5rem;">Share Your Review</h4>
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Your Name</label>
+          <input type="text" name="review-name" placeholder="Your name" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 4px; font-size: 1rem;" />
+        </div>
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Star Rating</label>
+          <select name="review-stars" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 4px; font-size: 1rem;">
+            <option value="">Select rating...</option>
+            <option value="⭐">⭐ (1 star)</option>
+            <option value="⭐⭐">⭐⭐ (2 stars)</option>
+            <option value="⭐⭐⭐">⭐⭐⭐ (3 stars)</option>
+            <option value="⭐⭐⭐⭐">⭐⭐⭐⭐ (4 stars)</option>
+            <option value="⭐⭐⭐⭐⭐" selected>⭐⭐⭐⭐⭐ (5 stars)</option>
+          </select>
+        </div>
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Your Review</label>
+          <textarea name="review-text" placeholder="Share your experience with CLEOBELLA DESING..." rows="4" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 4px; font-size: 1rem; font-family: inherit;"></textarea>
+        </div>
+        <button type="submit" class="btn primary" style="width: 100%;">Post Review</button>
+      </form>
+      <div id="review-message" class="newsletter-message" style="margin-top: 1rem;"></div>
+    </section>
+
+    <section id="comments" class="container comments">
+      <h3>💬 Leave a Comment</h3>
+      <form id="comments-form" class="comments-form">
+        <input type="text" name="name" placeholder="Your name" required />
+        <input type="email" name="email" placeholder="Your email" required />
+        <textarea name="message" placeholder="Share your thoughts about CLEOBELLA DESING..." rows="4" required></textarea>
+        <button type="submit" class="btn primary">Post Comment</button>
+      </form>
+      <div id="comments-list" class="comments-list"></div>
+    </section>
+
+    <section id="contact" class="container contact">
+      <h3>Contact & Orders</h3>
+  <p>Email: <a href="mailto:ijerheanthonia@gmail.com">ijerheanthonia@gmail.com</a></p>
+  <p>Phone / WhatsApp: +243 8165712215 (08165712215)</p>
+      <p>
+        Quick WhatsApp: <a id="whatsapp-link" href="#">Message on WhatsApp</a>
+      </p>
+    </section>
+  </main>
+
+  <!-- Cart drawer -->
+  <aside id="cart" class="cart">
+    <div class="cart-header">
+      <h4>Your cart</h4>
+      <button id="cart-close" aria-label="Close cart">Close</button>
+    </div>
+    <div id="cart-items" class="cart-items"></div>
+    <div class="cart-footer">
+      <div class="totals">Total: <strong id="cart-total">$0.00</strong></div>
+      <button id="checkout-btn" class="btn primary">Checkout</button>
+    </div>
+  </aside>
+
+  <!-- Checkout modal -->
+  <div id="checkout" class="modal">
+    <div class="modal-content">
+      <button id="checkout-close" class="modal-close">×</button>
+      <h3>Checkout</h3>
+      <form id="checkout-form">
+        <label>Name <input type="text" name="name" required /></label>
+        <label>Email <input type="email" name="email" required /></label>
+        <label>Phone <input type="tel" name="phone" required /></label>
+        <label>Address <textarea name="address" rows="2" required></textarea></label>
+        <label>Notes (size, color, measurements)</label>
+        <textarea name="notes" rows="3" placeholder="Write measurements, preferred fabric, color or other instructions"></textarea>
+        <div class="modal-actions">
+          <button type="submit" class="btn primary">Send Order via Email</button>
+          <button type="button" id="checkout-wa" class="btn">Send via WhatsApp</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+    <p>© CLEOBELLA DESING — Made with care. Contact: <a href="mailto:ijerheanthonia@gmail.com">ijerheanthonia@gmail.com</a> • +243 8165712215</p>
+    </div>
+  </footer>
+
+  <!-- EmailJS Library for sending emails -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/index.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

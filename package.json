@@ -1,0 +1,13 @@
+{
+  "name": "cleobella-desing-website",
+  "version": "1.0.0",
+  "description": "Fashion e-commerce website for CLEOBELLA DESING",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["fashion", "e-commerce", "cleobella"],
+  "author": "CLEOBELLA DESING",
+  "license": "ISC"
+}
