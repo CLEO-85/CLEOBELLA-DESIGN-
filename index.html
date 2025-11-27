@@ -2,34 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>CLEOBELLA DESING — Fashion by CLEOBELLA</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Flash Sale Banner -->
+  <div class="flash-banner">
+    <span>🎉 LIMITED TIME: New Collection - 15% OFF with code CLEOBELLA15</span>
+  </div>
+
   <header class="site-header">
     <div class="container">
       <div class="logo-section">
-        <svg class="logo-icon" viewBox="0 0 50 50" width="40" height="40">
-          <circle cx="25" cy="25" r="23" fill="none" stroke="url(#logoGradient)" stroke-width="2"/>
-          <path d="M25 10 L35 30 L15 30 Z" fill="url(#logoGradient)"/>
+        <svg class="logo-icon" viewBox="0 0 120 120" width="56" height="56" role="img" aria-label="CLEOBELLA designer monogram">
           <defs>
             <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" style="stop-color:#d4456e;stop-opacity:1" />
+              <stop offset="60%" style="stop-color:#f08060;stop-opacity:1" />
               <stop offset="100%" style="stop-color:#f4a460;stop-opacity:1" />
             </linearGradient>
+            <filter id="logoShadow" x="-30%" y="-30%" width="160%" height="160%">
+              <feDropShadow dx="0" dy="6" stdDeviation="8" flood-opacity="0.18"/>
+            </filter>
           </defs>
+          <g class="bg" filter="url(#logoShadow)">
+            <circle cx="60" cy="60" r="56" fill="url(#logoGradient)"/>
+          </g>
+          <!-- Sheen: moving translucent rectangle for shimmer effect -->
+          <g class="shine" transform="rotate(-20 60 60)" aria-hidden="true">
+            <rect x="-140" y="10" width="80" height="100" fill="#ffffff" opacity="0.14">
+              <animate attributeName="x" from="-140" to="220" dur="2s" repeatCount="indefinite" />
+            </rect>
+          </g>
+          <style>
+            .monogram { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; fill: #ffffff; letter-spacing: 2px; }
+          </style>
+          <text x="50%" y="62%" text-anchor="middle" class="monogram">CD</text>
         </svg>
-        <h1 class="brand">CLEOBELLA DESING</h1>
+        <div>
+          <h1 class="brand">CLEOBELLA DESING</h1>
+          <p class="motto">Where Style Meets Comfort</p>
+        </div>
       </div>
       <nav class="top-nav">
-        <a href="#products">Shop</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <button id="cart-toggle" aria-label="Open cart">
-          <span class="cart-icon">🛍️</span>
-          Cart (<span id="cart-count">0</span>)
-        </button>
+        <button id="nav-toggle" class="nav-toggle" aria-expanded="false" aria-label="Open menu">☰</button>
+
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="shop.html">Shop</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="cart.html" class="cart-link">Cart</a>
+        </div>
+
+        <div class="nav-actions">
+          <button id="restore-media" class="btn mobile-only" title="Restore product images and videos">Restore Media</button>
+          <button id="cart-toggle" aria-label="Open cart">
+            <span class="cart-icon">🛍️</span>
+            Cart (<span id="cart-count">0</span>)
+          </button>
+        </div>
       </nav>
     </div>
   </header>
@@ -147,16 +180,49 @@
     <section id="social" class="container social">
       <h3>🌐 Follow Us</h3>
       <div class="social-links">
-        <a href="#" class="social-btn" title="Instagram">📸 Instagram</a>
-        <a href="#" class="social-btn" title="Facebook">👍 Facebook</a>
-        <a href="#" class="social-btn" title="TikTok">🎬 TikTok</a>
-        <a href="#" class="social-btn" title="Twitter">𝕏 Twitter</a>
+        <a href="https://www.instagram.com/cleobella44?igsh=bWd6bHN2MzMwZ3F0" class="social-btn instagram" title="Instagram" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.266.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.322a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
+          </svg>
+          Instagram
+        </a>
+        <a href="#" class="social-btn facebook" title="Facebook" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+          Facebook
+        </a>
+        <a href="https://www.tiktok.com/@cleobella.design?is_from_webapp=1&sender_device=pc" class="social-btn tiktok" title="TikTok" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.1 1.82 2.89 2.89 0 0 1 5.1-1.82V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/>
+          </svg>
+          TikTok
+        </a>
+        <a href="#" class="social-btn twitter" title="Twitter" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.207-6.807-5.974 6.807H2.882l7.532-8.615L1.254 2.25h6.554l4.733 6.225z"/>
+          </svg>
+          Twitter
+        </a>
       </div>
       <p>Share your CLEOBELLA moments with #CleobellaDessing</p>
     </section>
 
     <section id="products" class="container products">
-      <h3>Popular pieces</h3>
+      <h3>✨ Popular Pieces</h3>
+      <p style="text-align: center; color: #666; margin-bottom: 2rem; font-style: italic;">Our bestselling collection that customers love</p>
+      
+      <!-- Search & Filter -->
+      <div class="search-filter" style="margin-bottom: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <input type="text" id="search-products" placeholder="🔍 Search products..." style="padding: 0.75rem 1rem; border: 2px solid #e0e0e0; border-radius: 25px; width: 250px; font-size: 0.95rem; transition: all 0.3s ease;" />
+        <select id="filter-price" style="padding: 0.75rem 1rem; border: 2px solid #e0e0e0; border-radius: 25px; font-size: 0.95rem; cursor: pointer; transition: all 0.3s ease;">
+          <option value="">All Prices</option>
+          <option value="low">Under ₦10,000</option>
+          <option value="mid">₦10,000 - ₦20,000</option>
+          <option value="high">Over ₦20,000</option>
+        </select>
+      </div>
+      
       <div id="products-grid" class="grid"></div>
     </section>
 
@@ -195,15 +261,31 @@
       <div id="review-message" class="newsletter-message" style="margin-top: 1rem;"></div>
     </section>
 
-    <section id="comments" class="container comments">
-      <h3>💬 Leave a Comment</h3>
-      <form id="comments-form" class="comments-form">
-        <input type="text" name="name" placeholder="Your name" required />
-        <input type="email" name="email" placeholder="Your email" required />
-        <textarea name="message" placeholder="Share your thoughts about CLEOBELLA DESING..." rows="4" required></textarea>
-        <button type="submit" class="btn primary">Post Comment</button>
-      </form>
-      <div id="comments-list" class="comments-list"></div>
+    <!-- Store Hours & Trust Section -->
+    <section id="store-info" class="container store-info" style="background: linear-gradient(135deg, #f9f5f0 0%, #fef5f0 100%); border-radius: 12px; padding: 2.5rem; margin: 3rem 0;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+        <div style="text-align: center;">
+          <h4 style="font-size: 1.3rem; margin-bottom: 1rem; color: var(--primary);">⏰ Store Hours</h4>
+          <p><strong>Monday - Friday:</strong> 9:00 AM - 6:00 PM</p>
+          <p><strong>Saturday:</strong> 10:00 AM - 4:00 PM</p>
+          <p><strong>Sunday:</strong> Closed</p>
+          <p style="color: var(--muted); font-size: 0.9rem; margin-top: 0.5rem;">All times are CAT (Central Africa Time)</p>
+        </div>
+        <div style="text-align: center;">
+          <h4 style="font-size: 1.3rem; margin-bottom: 1rem; color: var(--primary);">✅ Why Choose Us</h4>
+          <p>✨ Handcrafted Quality</p>
+          <p>🚚 Fast Delivery</p>
+          <p>💯 100% Satisfaction</p>
+          <p>🔒 Secure Checkout</p>
+        </div>
+        <div style="text-align: center;">
+          <h4 style="font-size: 1.3rem; margin-bottom: 1rem; color: var(--primary);">🌟 Order Processing</h4>
+          <p><strong>Order Placed:</strong> Instant confirmation</p>
+          <p><strong>Production:</strong> 7-14 days</p>
+          <p><strong>Delivery:</strong> 2-5 business days</p>
+          <p style="color: var(--muted); font-size: 0.9rem; margin-top: 0.5rem;">Standard within DRC</p>
+        </div>
+      </div>
     </section>
 
     <section id="contact" class="container contact">

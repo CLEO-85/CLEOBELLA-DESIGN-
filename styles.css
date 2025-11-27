@@ -5,12 +5,17 @@
   --primary-dark: #b83456;
   --secondary: #f4a460;
   --accent: #c41e3a;
+  /* New cool accent color (blue/cyan) to add a modern contrast */
+  --cool: #3AA7FF;
+  --cool-dark: #2a87d1;
   --dark: #1a1a1a;
   --light: #f9f7f4;
   --muted: #7a7a7a;
   --gold: #d4af37;
   --white: #ffffff;
-  --gradient: linear-gradient(135deg, #d4456e 0%, #f4a460 100%);
+  /* updated gradient blends the brand pink with the new cool accent */
+  --gradient: linear-gradient(135deg, var(--primary) 0%, var(--cool) 100%);
+  --nav-transition: 220ms;
 }
 
 * {
@@ -31,6 +36,28 @@ body {
   letter-spacing: 0.3px;
 }
 
+/* Flash Sale Banner */
+.flash-banner {
+  background: linear-gradient(90deg, #d4456e 0%, #f4a460 100%);
+  color: white;
+  text-align: center;
+  padding: 0.8rem;
+  font-weight: 600;
+  animation: slideDown 0.5s ease-out;
+  box-shadow: 0 2px 8px rgba(212, 69, 110, 0.2);
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -46,6 +73,8 @@ body {
   top: 0;
   z-index: 50;
   animation: slideDown 0.5s ease;
+  transition: transform var(--nav-transition) ease, padding 0.18s ease, box-shadow 0.18s ease;
+  will-change: transform;
 }
 
 @keyframes slideDown {
@@ -68,16 +97,57 @@ body {
 .logo-section {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 1rem;
 }
 
 .logo-icon {
-  animation: spin 3s linear infinite;
+  width: 56px;
+  height: 56px;
+  display: block;
+  border-radius: 14px;
+  overflow: visible;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.12));
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.logo-icon .monogram {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 700;
+  fill: #ffffff;
+  letter-spacing: 2px;
+  /* Prepare for transform animations (SVG-aware) */
+  transform-box: fill-box;
+  transform-origin: 60px 60px;
+  animation: monoMotion 4s ease-in-out infinite;
+}
+
+.logo-icon .bg {
+  transform-box: fill-box;
+  transform-origin: 60px 60px;
+  animation: bgSpin 18s linear infinite;
+}
+
+.logo-icon:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 18px 42px rgba(0,0,0,0.16);
+}
+
+.logo-icon:hover .bg {
+  /* pause background spin on hover for a refined effect */
+  animation-play-state: paused;
+}
+
+@keyframes bgSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes monoMotion {
+  0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+  40% { transform: translateY(-6px) rotate(-5deg) scale(1.03); opacity: 0.98; }
+  60% { transform: translateY(-3px) rotate(3deg) scale(1.01); opacity: 0.99; }
+ 100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
 }
 
 .brand {
@@ -90,6 +160,16 @@ body {
   background-clip: text;
   letter-spacing: 2px;
   transition: transform 0.3s ease;
+  white-space: nowrap;
+}
+
+.motto {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--accent-pink);
+  letter-spacing: 1px;
+  margin: 0;
   white-space: nowrap;
 }
 
@@ -124,7 +204,7 @@ body {
   left: 0;
   width: 0;
   height: 2px;
-  background: var(--primary);
+  background: var(--cool);
   transition: width 0.3s ease;
 }
 
@@ -138,6 +218,66 @@ body {
   align-items: center;
   gap: 0.5rem;
 }
+
+/* Responsive nav: hamburger + collapsible links */
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 2px solid transparent;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.18s ease;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.nav-actions { display: flex; gap: .75rem; align-items: center; }
+
+.mobile-only { display: none; }
+.desktop-only { display: inline-block; }
+
+/* Small screens: show hamburger and collapse links */
+@media (max-width: 768px) {
+  .nav-toggle { display: inline-flex; }
+  .nav-links { display: none; }
+  .mobile-only { display: inline-block; }
+  .desktop-only { display: none; }
+
+  .site-header.nav-open .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background: var(--white);
+    padding: 0.9rem 1rem 1rem 1rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+    z-index: 55;
+    animation: slideDown var(--nav-transition) ease;
+  }
+
+  .site-header.nav-open .nav-links a { padding: 0.6rem 0; }
+}
+
+/* Shrink header on scroll */
+.site-header.scrolled { padding: 0.6rem 0; box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+.site-header.scrolled .brand { transform: scale(0.95); }
+
+/* Hidden state for header when scrolling down */
+.site-header.hidden {
+  transform: translateY(-110%);
+}
+
 
 .cart-icon {
   font-size: 1.2rem;
@@ -251,12 +391,12 @@ body {
   background: var(--gradient);
   border-color: transparent;
   color: var(--white);
-  box-shadow: 0 6px 20px rgba(212, 69, 110, 0.3);
+  box-shadow: 0 6px 20px rgba(58,167,255,0.28);
 }
 
 .btn.primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(212, 69, 110, 0.4);
+  box-shadow: 0 10px 30px rgba(58,167,255,0.36);
 }
 
 .btn.add {
@@ -287,7 +427,7 @@ body {
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background: var(--primary);
+  background: var(--cool);
   border-radius: 3px;
 }
 
@@ -318,40 +458,23 @@ body {
   cursor: pointer;
 }
 
-.product:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 40px rgba(212, 69, 110, 0.2);
-}
-
-.product img,
-.product video {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.product:hover img,
-.product:hover video {
-  transform: scale(1.05);
-}
-
 .product h4 {
   font-size: 1.1rem;
   font-weight: 600;
   padding: 1.2rem 1.2rem 0 1.2rem;
   color: var(--dark);
 }
-
 .product .price {
   font-size: 1.4rem;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--cool);
   padding: 0.5rem 1.2rem;
-  background: linear-gradient(135deg, rgba(212, 69, 110, 0.05) 0%, rgba(244, 164, 96, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(58,167,255,0.05) 0%, rgba(244, 164, 96, 0.03) 100%);
   margin: 0.5rem 1.2rem;
   border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(58,167,255,0.06);
 }
+
 
 /* Cart */
 .cart {
@@ -874,7 +997,9 @@ textarea:focus {
 }
 
 .social-btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   padding: 0.8rem 1.5rem;
   background: var(--white);
   color: var(--primary);
@@ -886,11 +1011,98 @@ textarea:focus {
   font-size: 0.95rem;
 }
 
-.social-btn:hover {
-  background: var(--primary);
-  color: var(--white);
+.social-btn svg {
+  width: 20px;
+  height: 20px;
+  transition: all 0.3s ease;
+}
+
+.social-btn.instagram {
+  border-color: #E4405F;
+  color: #E4405F;
+}
+
+.social-btn.instagram svg {
+  color: #E4405F;
+}
+
+.social-btn.instagram:hover {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: white;
+  border-color: transparent;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(212, 69, 110, 0.3);
+  box-shadow: 0 8px 20px rgba(228, 64, 95, 0.3);
+}
+
+.social-btn.instagram:hover svg {
+  color: white;
+}
+
+.social-btn.facebook {
+  border-color: #1877F2;
+  color: #1877F2;
+}
+
+.social-btn.facebook svg {
+  color: #1877F2;
+}
+
+.social-btn.facebook:hover {
+  background: #1877F2;
+  color: white;
+  border-color: #1877F2;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(24, 119, 242, 0.3);
+}
+
+.social-btn.facebook:hover svg {
+  color: white;
+}
+
+.social-btn.tiktok {
+  border-color: #000000;
+  color: #000000;
+}
+
+.social-btn.tiktok svg {
+  color: #000000;
+}
+
+.social-btn.tiktok:hover {
+  background: linear-gradient(135deg, #000000 0%, #25F4EE 100%);
+  color: white;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.social-btn.tiktok:hover svg {
+  color: white;
+}
+
+.social-btn.twitter {
+  border-color: #1DA1F2;
+  color: #1DA1F2;
+}
+
+.social-btn.twitter svg {
+  color: #1DA1F2;
+}
+
+.social-btn.twitter:hover {
+  background: #1DA1F2;
+  color: white;
+  border-color: #1DA1F2;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(29, 161, 242, 0.3);
+}
+
+.social-btn.twitter:hover svg {
+  color: white;
+}
+
+.social-btn:hover {
+  transform: translateY(-2px);
 }
 
 .social p {
@@ -979,3 +1191,325 @@ textarea:focus {
     text-align: center;
   }
 }
+
+/* Show restore-media button only on small screens */
+#restore-media {
+  display: none;
+}
+@media (max-width: 768px) {
+  #restore-media {
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+}
+
+/* Mobile-specific animation tuning (small screens) */
+@media (max-width: 480px) {
+  .hero { padding: 2rem 0; }
+  .hero-inner { gap: 1rem; }
+  .hero h2 { font-size: 1.6rem; }
+
+  /* Make the logo smaller and reduce motion on compact screens */
+  .logo-icon { width: 48px; height: 48px; filter: none; }
+  .logo-icon .monogram { font-size: 36px; transform-origin: 28px 28px; }
+  .logo-icon .bg { animation: none; }
+
+  /* Lower image/video heights for faster paint and lower memory use */
+  .product img,
+  .product video { height: 140px; }
+
+  /* Reduce transform magnitudes and durations */
+  .product { transition-duration: 200ms; }
+  .product:hover { transform: none; box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+
+  /* Disable pulsing on small screens */
+  .btn.primary.pulse { animation: none; }
+  .flash-banner { animation: none; }
+
+  /* Reduce heavy shadows to improve performance */
+  .contact-card, .product, .featured-image, .cart {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  }
+
+  /* Make social buttons simpler */
+  .social-btn { border-radius: 12px; padding: 0.6rem 1rem; }
+  .social-btn:hover { transform: none; box-shadow: none; }
+}
+
+/* Disable hover-only motion on touch devices (improves UX and prevents accidental motion) */
+@media (hover: none) {
+  .product:hover, .social-btn:hover, .logo-icon:hover, .top-nav a:hover, .top-nav button:hover {
+    transform: none !important;
+    box-shadow: none !important;
+    animation-play-state: paused !important;
+  }
+  .product img, .product video { will-change: auto; }
+}
+
+/* Mobile-fit helpers and safe-area support */
+html, body { height: 100%; -webkit-text-size-adjust: 100%; }
+
+/* Respect device safe areas (iPhone notch, etc.) */
+.container {
+  padding-left: calc(1.5rem + env(safe-area-inset-left));
+  padding-right: calc(1.5rem + env(safe-area-inset-right));
+}
+
+/* Responsive media */
+img, video { max-width: 100%; height: auto; display: block; }
+.product img, .product video { width: 100%; height: auto; object-fit: cover; border-radius: 6px; }
+
+/* Ensure adequate touch target sizes on mobile */
+.btn, .social-btn { min-height: 44px; }
+input, textarea, select, button { font-size: 16px; }
+
+/* Cart padding on devices with safe area at top */
+@media (max-width: 768px) {
+  .cart { padding-top: calc(1.5rem + env(safe-area-inset-top)); }
+}
+
+/* Further reduce heavy visuals on very small devices */
+@media (max-width: 360px) {
+  .hero h2 { font-size: 1.4rem; }
+  .brand { font-size: 1.2rem; }
+  .motto { font-size: 0.7rem; }
+}
+
+
+
+/* ----------------------
+   Additional Animations
+   - Button micro-interactions
+   - Product card entrance & hover polish
+   - Hero heading subtle entrance
+   - Social button micro-bounce
+   - Flash banner pulse
+   - Cart/modal transitions
+   - Respect prefers-reduced-motion
+   ---------------------- */
+
+/* Gentle entrance for hero titles */
+.hero h2 {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.7s ease forwards 0.15s;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Button micro-animations */
+.btn {
+  will-change: transform;
+  transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease, color 180ms ease;
+}
+.btn:active {
+  transform: translateY(1px) scale(0.998);
+}
+.btn.primary {
+  transition: transform 260ms cubic-bezier(.2,.9,.2,1), box-shadow 260ms ease;
+}
+
+/* Add subtle pulse to primary calls-to-action */
+.btn.primary.pulse {
+  animation: pulse 2.6s ease-in-out infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 6px 20px rgba(212,69,110,0.22); transform: translateY(0) scale(1); }
+  50% { box-shadow: 0 12px 30px rgba(212,69,110,0.14); transform: translateY(-3px) scale(1.01); }
+  100% { box-shadow: 0 6px 20px rgba(212,69,110,0.22); transform: translateY(0) scale(1); }
+}
+
+/* Product card entrance and hover subtlety */
+.product {
+  opacity: 0;
+  transform: translateY(8px) scale(0.995);
+}
+/* When JS adds .in-view we run the entrance animation (allows IntersectionObserver stagger) */
+.product.in-view {
+  animation: cardIn 0.6s cubic-bezier(.2,.9,.2,1) forwards;
+}
+
+/* Media wrapper and play overlay */
+.media-wrap { position: relative; display: block; width: 100%; }
+.media-wrap img, .media-wrap video { display: block; width: 100%; height: 160px; object-fit: cover; border-radius: 6px; }
+.play-overlay {
+  position: absolute;
+  left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: 64px; height: 64px; border-radius: 50%;
+  background: rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 28px; cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  transition: transform 160ms ease, opacity 160ms ease;
+}
+.media-wrap .play-overlay:active { transform: translate(-50%, -50%) scale(0.96); }
+.media-wrap .is-playing + .play-overlay { opacity: 0.0; visibility: hidden; }
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.995); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.product:hover {
+  transform: translateY(-10px) scale(1.02);
+}
+
+/* Flash banner gentle attention */
+.flash-banner {
+  animation: bannerPulse 3.6s ease-in-out infinite;
+}
+@keyframes bannerPulse {
+  0% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(-2px); opacity: 0.98; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Social buttons little bounce on hover (already has translateY) */
+.social-btn {
+  transform-origin: center;
+  transition: transform 260ms cubic-bezier(.2,.9,.2,1), box-shadow 260ms ease, background 260ms ease;
+}
+.social-btn:focus,
+.social-btn:hover {
+  transform: translateY(-6px) scale(1.02) rotate(-1deg);
+}
+
+/* Cart & modal - smoother open/close */
+.cart {
+  transition: right 360ms cubic-bezier(.22,.9,.16,1), box-shadow 360ms ease;
+}
+.cart.open {
+  right: 0;
+}
+.modal.open {
+  animation: modalFadeScale 320ms cubic-bezier(.2,.9,.2,1) both;
+}
+@keyframes modalFadeScale {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Small utility for subtle icon motion */
+.icon-animate {
+  display: inline-block;
+  transition: transform 220ms cubic-bezier(.2,.9,.2,1);
+}
+.icon-animate:hover { transform: translateY(-4px) rotate(-6deg) scale(1.06); }
+
+/* Transitions & interaction polish */
+
+/* Navigation & header links */
+.top-nav a,
+.top-nav button {
+  transition: color 180ms ease, transform 200ms cubic-bezier(.2,.9,.2,1);
+}
+.top-nav a:active,
+.top-nav button:active {
+  transform: translateY(1px);
+}
+
+/* Product details transitions */
+.product img,
+.product video {
+  transition: transform 320ms cubic-bezier(.2,.9,.2,1), filter 260ms ease, opacity 260ms ease;
+}
+.product h4,
+.product .price {
+  transition: color 180ms ease, transform 180ms ease;
+}
+.product .price:hover {
+  transform: translateY(-2px) scale(1.01);
+  color: var(--primary-dark);
+}
+
+/* Cart item and removal transition (JS can add `.removed` when deleting) */
+.cart-item {
+  transition: background 160ms ease, transform 220ms ease, opacity 220ms ease, height 280ms ease, margin 220ms ease;
+}
+.cart-item.removed {
+  opacity: 0;
+  transform: translateX(14px) scale(0.992);
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden;
+}
+
+/* Modal content smoothing */
+.modal-content {
+  transform-origin: center;
+  transition: transform 260ms cubic-bezier(.2,.9,.2,1), opacity 260ms ease;
+}
+
+/* Small controls (quantity, small icons) */
+.small-btn,
+.quantity-btn {
+  transition: background 180ms ease, transform 160ms ease, box-shadow 200ms ease;
+}
+.small-btn:active,
+.quantity-btn:active { transform: translateY(1px) scale(0.995); }
+
+/* Make sure existing prefers-reduced-motion catches new selectors */
+@media (prefers-reduced-motion: reduce) {
+  .hero h2,
+  .product,
+  .contact-card,
+  .modal.open,
+  .flash-banner,
+  .btn.primary.pulse,
+  .cart-item,
+  .modal-content,
+  .product img,
+  .product video {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Stronger reduced-motion support: disable most animations/transitions site-wide */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Pause logo motion and sheen */
+  .logo-icon .bg,
+  .logo-icon .monogram,
+  .logo-icon .shine {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  /* Stop pulsing banners, button pulses and other motion */
+  .flash-banner,
+  .btn.primary.pulse,
+  .product.in-view,
+  .product,
+  .contact-card,
+  .modal.open,
+  .cart,
+  .social-btn,
+  .social-btn svg {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+
+  /* Make interactive elements still obvious but static */
+  .btn,
+  .top-nav a,
+  .top-nav button,
+  .product .price {
+    transition: none !important;
+  }
+
+  /* Ensure videos are not auto-playing via CSS (JS will also pause them) */
+  video {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+

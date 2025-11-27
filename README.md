@@ -108,3 +108,26 @@ Notes about videos
 If you want, I can:
 - Add more products by extending the `products` array in `script.js`, or
 - Accept image/video files and wire them into the product data for you.
+
+## Local server helpers (start / stop)
+
+This project includes small helper scripts to run the site locally:
+
+- `start-node-server.ps1` — Adds `C:\Program Files\nodejs` to the PATH for the current PowerShell session, verifies `node`/`npm`, starts `server.js`, and performs a quick HTTP check on `http://localhost:3000`.
+- `stop-node-server.ps1` — Finds Node processes that were started with `server.js` in their command line and stops them. If none are found, it lists `node` processes and optionally stops them.
+- `ps-http-server.ps1` — A PowerShell-only simple HTTP server (works without Node).
+
+Recommended usage:
+
+```powershell
+# Start Node-based server (temporary session PATH fix + launch)
+powershell -NoProfile -ExecutionPolicy Bypass -File .\start-node-server.ps1
+
+# Stop Node-based server
+powershell -NoProfile -ExecutionPolicy Bypass -File .\stop-node-server.ps1
+
+# Or run the PowerShell-only server (no Node required)
+powershell -NoProfile -ExecutionPolicy Bypass -File .\ps-http-server.ps1
+```
+
+If `node` is not on your PATH after installing Node, reopen PowerShell or add `C:\Program Files\nodejs` to your user PATH so `node` and `npm` are available in new shells.
